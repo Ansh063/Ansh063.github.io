@@ -2,7 +2,7 @@ const { Chess } = require("chess.js")
 
 var board = null
 var newGame = new Chess()
-function onStart(source, position, piece, staus) {
+function onStart(source, piece, position, staus) {
     if(newGame.game_over() == true){
         return false;
     }
@@ -36,5 +36,10 @@ function updateBoard() {
     board.position(newGame.fen())
 }
 var config = {
-    
+    draggable : true,
+    position : 'start',
+    onDragStart : onStart,
+    onDragMove : moveFromSource,
+    onSnapEnd : updateBoard
 }
+board = Chessboard(myboard,config);
